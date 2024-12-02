@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, FC } from 'react';
 import { Cell, IconContainer, Section, AppRoot, Text, LargeTitle, Headline } from '@telegram-apps/telegram-ui';
 import { popup, qrScanner } from '@telegram-apps/sdk-react';
 
@@ -6,7 +6,7 @@ type CellProps = {
   id: number;
   icon: ReactNode;
   text: string;
-}
+};
 
 const cells: CellProps[] = [
   {
@@ -26,8 +26,7 @@ const cells: CellProps[] = [
   },
 ];
 
-export const Send = () => {
-
+export const Send: FC = () => {
   const handleCellClick = async (id: number) => {
     if (id === 1) {
       qrScanner.open().then((content) => {
@@ -55,16 +54,10 @@ export const Send = () => {
   };
 
   return (
-    <AppRoot style={{textAlign: 'center' }}>
-      <Text weight="3">
-        Total balance
-      </Text>
-      <LargeTitle weight="1">
-        70 Sats
-      </LargeTitle>
-      <Headline weight="3">
-        $0.03 USD
-      </Headline>
+    <AppRoot style={{ textAlign: 'center' }}>
+      <Text weight="3">Total balance</Text>
+      <LargeTitle weight="1">70 Sats</LargeTitle>
+      <Headline weight="3">$0.03 USD</Headline>
       <Section header="This is section header" footer="And this is footer">
         {cells.map((cell) => (
           <Cell

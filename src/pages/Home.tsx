@@ -1,33 +1,26 @@
-import { AppRoot, List } from '@telegram-apps/telegram-ui';
-import { CellSection } from '../components/CellSection';
+import { FC } from 'react';
+import { TransactionSection } from '../components/TransactionSection';
 import { FormSection } from '../components/FormSection/FormSection';
 import ProfileCard from '../components/ProfileCard/ProfileCard';
 import { HeaderSection } from '../components/HeaderSection/HeaderSection';
-import ActionSection from '../components/ActionSection';
-import { ChangeWallet } from '../components/MyTelegramApp';
-import { backButton, settingsButton } from '@telegram-apps/sdk-react';
+import { Page } from '@/components/Page';
+import TabBarComponent from '@/components/TabBar/TabBar';
+import { List, Section } from '@telegram-apps/telegram-ui';
 
-const Home = () => {
-  backButton.hide();
-  settingsButton.show();
-
+const Home: FC = () => {
 
   return (
-    <AppRoot>
-      <List 
-        style={{
-          background: 'var(--tgui--secondary_bg_color)',
-          padding: '16px',
-        }}
-      >
-        <HeaderSection />
-        <ProfileCard />
-        <ChangeWallet />
-        <ActionSection />
-        <CellSection />
-        <FormSection />
+    <Page back={true} showSettings={true}>
+      <List>
+      <Section>
+      <HeaderSection/>
+      <ProfileCard/>
+      </Section>
+      <TransactionSection numTransaction={2}/> 
+      <FormSection/>
       </List>
-    </AppRoot>
+      <TabBarComponent/>
+    </Page>
   );
 };
 
