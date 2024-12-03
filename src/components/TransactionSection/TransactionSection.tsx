@@ -61,5 +61,6 @@ export const TransactionSection: React.FC<TransactionSectionProps> = ({ numTrans
         <div style={{ color: '#888' }}>{transaction.amountSATS}</div>
       </Cell>
     ))}
-  </Section></Page>
+  </Section>
+  </Page>
 );
