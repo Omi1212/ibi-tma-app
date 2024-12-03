@@ -1,4 +1,4 @@
-import { Cell, Section } from '@telegram-apps/telegram-ui';
+import { Cell, Modal, Section, Text, Title } from '@telegram-apps/telegram-ui';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import React from 'react';
 import { Page } from '../Page';
@@ -44,23 +44,38 @@ const transactions: TransactionCellProps[] = [
 ];
 
 export const TransactionSection: React.FC<TransactionSectionProps> = ({ numTransaction = transactions.length }) => (
-  <Page back={true} showSettings={true}><Section header="Transactions">
-    {transactions.slice(0, numTransaction).map((transaction) => (
-      <Cell
-        key={transaction.id}
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-        before={<div style={{ color: transaction.type === 'Received' ? 'green' : 'red' }}>
-          {transaction.type === 'Received' ? <FaArrowDown /> : <FaArrowUp />}
-        </div>}
-        after={<div style={{ textAlign: 'right' }}>
-          <div>{transaction.time}</div>
-          <div style={{ color: '#888' }}>{transaction.date}</div>
-        </div>}
-      >
-        <div style={{ fontWeight: 'bold' }}>{transaction.amountUSD}</div>
-        <div style={{ color: '#888' }}>{transaction.amountSATS}</div>
-      </Cell>
-    ))}
-  </Section>
+  <Page back={true} showSettings={true}>
+    <Section header="Transactions">
+      {transactions.slice(0, numTransaction).map((transaction) => (
+        <Modal
+          key={transaction.id}
+          header={<Modal.Header />}
+          trigger={
+            <Cell
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+              before={<div style={{ color: transaction.type === 'Received' ? 'green' : 'red' }}>
+                {transaction.type === 'Received' ? <FaArrowDown /> : <FaArrowUp />}
+              </div>}
+              after={<div style={{ textAlign: 'right' }}>
+                <div>{transaction.time}</div>
+                <div style={{ color: '#888' }}>{transaction.date}</div>
+              </div>}
+            >
+              <div style={{ fontWeight: 'bold' }}>{transaction.amountUSD}</div>
+              <div style={{ color: '#888' }}>{transaction.amountSATS}</div>
+            </Cell>
+          }
+        >
+          <div style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
+            <Title level="2" weight="3">Transaction Details</Title>
+            <Text>Type: {transaction.type}</Text>
+            <Text>Amount (USD): {transaction.amountUSD}</Text>
+            <Text>Amount (SATS): {transaction.amountSATS}</Text>
+            <Text>Time: {transaction.time}</Text>
+            <Text>Date: {transaction.date}</Text>
+          </div>
+        </Modal>
+      ))}
+    </Section>
   </Page>
 );

@@ -7,9 +7,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { Icon28AddCircle } from '@telegram-apps/telegram-ui/dist/icons/28/add_circle';
 import { useNavigate } from 'react-router-dom';
 
-const shareLink = () => {
-  // Implementa la lógica para compartir el enlace
-};
+
 
 const getUserInfo = () => {
   qrScanner.open().then((content) => {
@@ -106,7 +104,7 @@ const ProfileCard = () => {
         </Modal>
       </div>
       <InlineButtons mode="bezeled" style={{ marginTop: '16px' }}>
-        <InlineButtons.Item text="Add sats" onClick={shareLink}>
+        <InlineButtons.Item text="Add sats" >
           <FaPlus size={24} />
         </InlineButtons.Item>
         <InlineButtons.Item text="Send" onClick={handleNavigation}>
