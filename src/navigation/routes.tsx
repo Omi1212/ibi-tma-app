@@ -6,6 +6,7 @@ import { LaunchParamsPage } from '@/pages/LaunchParamsPage.tsx';
 import { ThemeParamsPage } from '@/pages/ThemeParamsPage.tsx';
 import { Send } from '@/pages/Send';
 import Home from '@/pages/Home';
+import { TransactionSection } from '@/components/TransactionSection';
 
 
 interface Route {
@@ -22,4 +23,6 @@ export const routes: Route[] = [
   { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params' },
   { path: '/send', Component: Send, title: 'Send' },
   { path: '/home', Component: Home, title: 'Home' },
+  { path: '/transaction', Component: TransactionSection, title: 'Transaction' },
+  { path: '/send', Component: Send, title: 'Send' },
 ];

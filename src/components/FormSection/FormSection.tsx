@@ -1,24 +1,23 @@
 import { Section, Cell } from '@telegram-apps/telegram-ui';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Link } from '../Link/Link';
+
+
 
 export const FormSection = () => {
-  const navigate = useNavigate();
 
-  const handleNavigation = () => {
-    navigate('/transactions');
-  };
 
   return (
-    <div style={{ borderRadius: '3%', overflow: 'hidden' }}>
+
       <Section>
+        <Link to="/transaction">
         <Cell
           after={<MdOutlineKeyboardArrowRight size={32} />}
-          onClick={handleNavigation}
         >
           Transaction history
-        </Cell>
+        </Cell></Link>
       </Section>
-    </div>
+
+
   );
 };

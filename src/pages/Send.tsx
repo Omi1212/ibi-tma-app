@@ -1,30 +1,9 @@
-import { ReactNode, FC } from 'react';
-import { Cell, IconContainer, Section, AppRoot, Text, LargeTitle, Headline } from '@telegram-apps/telegram-ui';
-import { popup, qrScanner } from '@telegram-apps/sdk-react';
-
-type CellProps = {
-  id: number;
-  icon: ReactNode;
-  text: string;
-};
-
-const cells: CellProps[] = [
-  {
-    id: 1,
-    icon: null,
-    text: 'Chat Settings',
-  },
-  {
-    id: 2,
-    icon: null,
-    text: 'Data and Storage',
-  },
-  {
-    id: 3,
-    icon: null,
-    text: 'Devices',
-  },
-];
+import { FC } from 'react';
+import { Cell, IconContainer, Section } from '@telegram-apps/telegram-ui';
+import { popup, qrScanner, shareURL, readTextFromClipboard } from '@telegram-apps/sdk-react';
+import { Page } from '@/components/Page';
+import { FaUserFriends, FaShareAlt } from 'react-icons/fa';
+import { MdOutlineQrCodeScanner } from "react-icons/md";
 
 export const Send: FC = () => {
   const handleCellClick = async (id: number) => {
@@ -37,38 +16,49 @@ export const Send: FC = () => {
         });
       });
     } else if (id === 2) {
-      /* miniApp.requestContact().then(contact => {
-        const contactInfo = `
-          First Name: ${contact.contact.firstName}
-          Phone Number: ${contact.contact.phoneNumber}
-        `;
+      if (readTextFromClipboard.isAvailable()) {
+        const contents = await readTextFromClipboard();
         popup.open({
-          title: 'Contact Information',
-          message: contactInfo,
+          title: 'Clipboard Contents',
+          message: contents || 'No content available',
           buttons: [{ id: 'ok', type: 'default', text: 'OK' }],
         });
-      }); */
+      }
     } else if (id === 3) {
-      /* utils.shareURL('https://t.me/mybot/myapp', 'Look! Some cool app here!'); */
+      if (shareURL.isAvailable()) {
+        shareURL('https://t.me/heyqbnk', 'Check out this cool group!');
+      }
     }
   };
 
   return (
-    <AppRoot style={{ textAlign: 'center' }}>
-      <Text weight="3">Total balance</Text>
-      <LargeTitle weight="1">70 Sats</LargeTitle>
-      <Headline weight="3">$0.03 USD</Headline>
-      <Section header="This is section header" footer="And this is footer">
-        {cells.map((cell) => (
-          <Cell
-            key={cell.id}
-            before={<IconContainer>{cell.icon}</IconContainer>}
-            onClick={() => handleCellClick(cell.id)}
-          >
-            {cell.text}
-          </Cell>
-        ))}
+    <Page back={true}>
+      <Section header="Select a method to send sats">
+        <Cell
+          key={1}
+          before={<IconContainer><MdOutlineQrCodeScanner /></IconContainer>}
+          onClick={() => handleCellClick(1)}
+          subtitle="Send sats by scanning QR code"
+        >
+          Scan a QR code
+        </Cell>
+        <Cell
+          key={2}
+          before={<IconContainer><FaUserFriends /></IconContainer>}
+          onClick={() => handleCellClick(2)}
+          subtitle="Send sats to your contacts"
+        >
+          Recipient or lightning address
+        </Cell>
+        <Cell
+          key={3}
+          before={<IconContainer><FaShareAlt /></IconContainer>}
+          onClick={() => handleCellClick(3)}
+          subtitle="Invite a friend to use the app"
+        >
+          Invite a friend
+        </Cell>
       </Section>
-    </AppRoot>
+    </Page>
   );
 };

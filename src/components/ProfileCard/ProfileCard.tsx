@@ -1,20 +1,24 @@
 import { useState } from 'react';
+import { popup, qrScanner } from '@telegram-apps/sdk-react';
 import { LargeTitle, Text, Headline, AppRoot, InlineButtons, Button, Modal, Section, Cell, List, ButtonCell } from '@telegram-apps/telegram-ui';
 import { FaPlus, FaArrowUp, FaCheckCircle } from 'react-icons/fa';
 import { MdOutlineQrCodeScanner } from "react-icons/md";
 import { IoIosArrowDown } from 'react-icons/io';
 import { Icon28AddCircle } from '@telegram-apps/telegram-ui/dist/icons/28/add_circle';
+import { useNavigate } from 'react-router-dom';
 
 const shareLink = () => {
   // Implementa la lógica para compartir el enlace
 };
 
-const handleNavigation = () => {
-  // Implementa la lógica para la navegación
-};
-
 const getUserInfo = () => {
-  // Implementa la lógica para obtener la información del usuario
+  qrScanner.open().then((content) => {
+    popup.open({
+      title: 'QR Code Result',
+      message: content || 'No content available',
+      buttons: [{ id: 'ok', type: 'default', text: 'OK' }],
+    });
+  });
 };
 
 type WalletProps = {
@@ -45,9 +49,14 @@ const wallets: WalletProps[] = [
 
 const ProfileCard = () => {
   const [selectedWalletId, setSelectedWalletId] = useState<number>(wallets[0].id);
+  const navigate = useNavigate();
 
   const handleWalletClick = (id: number) => {
     setSelectedWalletId(id);
+  };
+
+  const handleNavigation = () => {
+    navigate('/send');
   };
 
   const selectedWallet = wallets.find(wallet => wallet.id === selectedWalletId);

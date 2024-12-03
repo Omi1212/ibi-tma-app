@@ -1,6 +1,7 @@
 import { Cell, Section } from '@telegram-apps/telegram-ui';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import React from 'react';
+import { Page } from './Page';
 
 type TransactionCellProps = {
   id: number;
@@ -12,7 +13,7 @@ type TransactionCellProps = {
 };
 
 type TransactionSectionProps = {
-  numTransaction: number;
+  numTransaction?: number;
 };
 
 const transactions: TransactionCellProps[] = [
@@ -42,8 +43,8 @@ const transactions: TransactionCellProps[] = [
   },
 ];
 
-export const TransactionSection: React.FC<TransactionSectionProps> = ({ numTransaction }) => (
-  <Section header="Transactions">
+export const TransactionSection: React.FC<TransactionSectionProps> = ({ numTransaction = transactions.length }) => (
+  <Page back={true} showSettings={true}><Section header="Transactions">
     {transactions.slice(0, numTransaction).map((transaction) => (
       <Cell
         key={transaction.id}
@@ -60,5 +61,5 @@ export const TransactionSection: React.FC<TransactionSectionProps> = ({ numTrans
         <div style={{ color: '#888' }}>{transaction.amountSATS}</div>
       </Cell>
     ))}
-  </Section>
+  </Section></Page>
 );
