@@ -26,7 +26,7 @@ export const Send: FC = () => {
       }
     } else if (id === 3) {
       if (shareURL.isAvailable()) {
-        shareURL('https://t.me/heyqbnk', 'Check out this cool group!');
+        shareURL('https://t.me/qwerty', 'Check out this cool app!');
       }
     }
   };
@@ -36,7 +36,7 @@ export const Send: FC = () => {
       <Section header="Select a method to send sats">
         <Cell
           key={1}
-          before={<IconContainer><MdOutlineQrCodeScanner /></IconContainer>}
+          before={<IconContainer><MdOutlineQrCodeScanner size={24}/></IconContainer>}
           onClick={() => handleCellClick(1)}
           subtitle="Send sats by scanning QR code"
         >
@@ -44,7 +44,7 @@ export const Send: FC = () => {
         </Cell>
         <Cell
           key={2}
-          before={<IconContainer><FaUserFriends /></IconContainer>}
+          before={<IconContainer><FaUserFriends size={24}/></IconContainer>}
           onClick={() => handleCellClick(2)}
           subtitle="Send sats to your contacts"
         >
@@ -52,7 +52,7 @@ export const Send: FC = () => {
         </Cell>
         <Cell
           key={3}
-          before={<IconContainer><FaShareAlt /></IconContainer>}
+          before={<IconContainer><FaShareAlt size={24}/></IconContainer>}
           onClick={() => handleCellClick(3)}
           subtitle="Invite a friend to use the app"
         >

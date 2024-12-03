@@ -2,10 +2,7 @@ import { Section, Cell } from '@telegram-apps/telegram-ui';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { Link } from '../Link/Link';
 
-
-
 export const FormSection = () => {
-
 
   return (
 

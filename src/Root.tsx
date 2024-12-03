@@ -1,4 +1,4 @@
-import { App } from '@/components/App.tsx';
+import { App } from '@/App';
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 
 

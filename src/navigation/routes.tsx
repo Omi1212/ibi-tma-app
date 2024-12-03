@@ -1,12 +1,9 @@
 import type { ComponentType, JSX } from 'react';
 
-import { IndexPage } from '@/pages/IndexPage/IndexPage';
-import { InitDataPage } from '@/pages/InitDataPage.tsx';
-import { LaunchParamsPage } from '@/pages/LaunchParamsPage.tsx';
-import { ThemeParamsPage } from '@/pages/ThemeParamsPage.tsx';
+
 import { Send } from '@/pages/Send';
 import Home from '@/pages/Home';
-import { TransactionSection } from '@/components/TransactionSection';
+import { TransactionSection } from '@/components/TransactionSection/TransactionSection';
 
 
 interface Route {
@@ -17,12 +14,9 @@ interface Route {
 }
 
 export const routes: Route[] = [
-  { path: '/', Component: IndexPage },
-  { path: '/init-data', Component: InitDataPage, title: 'Init Data' },
-  { path: '/theme-params', Component: ThemeParamsPage, title: 'Theme Params' },
-  { path: '/launch-params', Component: LaunchParamsPage, title: 'Launch Params' },
+
+  { path: '/', Component: Home, title: 'Home' },
   { path: '/send', Component: Send, title: 'Send' },
-  { path: '/home', Component: Home, title: 'Home' },
   { path: '/transaction', Component: TransactionSection, title: 'Transaction' },
-  { path: '/send', Component: Send, title: 'Send' },
+
 ];

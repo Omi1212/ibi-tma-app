@@ -3,13 +3,7 @@ import { backButton, settingsButton } from '@telegram-apps/sdk-react';
 import { PropsWithChildren, useEffect } from 'react';
 
 export function Page({ children, back = true, showSettings = false }: PropsWithChildren<{
-  /**
-   * True if it is allowed to go back from this page.
-   */
   back?: boolean,
-  /**
-   * True if the settings button should be shown.
-   */
   showSettings?: boolean
 }>) {
   const navigate = useNavigate();
