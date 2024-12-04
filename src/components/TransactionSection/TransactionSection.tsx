@@ -1,7 +1,7 @@
 import { Cell, Modal, Section, Text, Title } from '@telegram-apps/telegram-ui';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import React from 'react';
-import { Page } from '../Page';
+import { Page } from '@/components/Page';
 
 type TransactionCellProps = {
   id: number;

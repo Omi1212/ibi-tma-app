@@ -45,7 +45,7 @@ const wallets: WalletProps[] = [
   },
 ];
 
-const ProfileCard = () => {
+const BalanceSection = () => {
   const [selectedWalletId, setSelectedWalletId] = useState<number>(wallets[0].id);
   const navigate = useNavigate();
 
@@ -118,4 +118,4 @@ const ProfileCard = () => {
   );
 };
 
-export default ProfileCard;
+export default BalanceSection;
